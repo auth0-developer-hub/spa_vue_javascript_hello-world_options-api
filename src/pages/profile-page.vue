@@ -5,11 +5,16 @@
       <div class="content__body">
         <p id="page-description">
           <span
+            >You can use the <strong>ID Token</strong> to get the profile
+            information of an authenticated user.</span
+          >
+          <span
             ><strong
-              >Only authenticated users should access this page.</strong
+              >Only authenticated users can access this page.</strong
             ></span
           >
         </p>
+
         <div class="profile-grid">
           <div class="profile__header">
             <img :src="user.picture" alt="Profile" class="profile__avatar" />
@@ -19,7 +24,7 @@
             </div>
           </div>
           <div class="profile__details">
-            <CodeSnippet title="User Profile Object" :code="code" />
+            <CodeSnippet title="Decoded ID Token" :code="code" />
           </div>
         </div>
       </div>
@@ -37,17 +42,8 @@ export default {
     CodeSnippet,
   },
   data() {
-    const user = {
-      nickname: "Customer",
-      name: "One Customer",
-      picture: "https://cdn.auth0.com/blog/hello-auth0/auth0-user.png",
-      updated_at: "2021-05-04T21:33:09.415Z",
-      email: "customer@example.com",
-      email_verified: false,
-      sub: "auth0|12345678901234567890",
-    };
     return {
-      user,
+      user: this.$auth0.user,
     };
   },
   computed: {

@@ -2,8 +2,10 @@
   <div class="mobile-nav-bar__tabs">
     <MobileNavBarTab path="/profile" label="Profile" />
     <MobileNavBarTab path="/public" label="Public" />
-    <MobileNavBarTab path="/protected" label="Protected" />
-    <MobileNavBarTab path="/admin" label="Admin" />
+    <template v-if="isAuthenticated">
+      <MobileNavBarTab path="/protected" label="Protected" />
+      <MobileNavBarTab path="/admin" label="Admin" />
+    </template>
   </div>
 </template>
 
@@ -12,5 +14,10 @@ import MobileNavBarTab from "@/components/navigation/mobile/mobile-nav-bar-tab.v
 
 export default {
   components: { MobileNavBarTab },
+  data() {
+    return {
+      isAuthenticated: this.$auth0.isAuthenticated,
+    };
+  },
 };
 </script>
